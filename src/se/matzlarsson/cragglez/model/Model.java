@@ -1,7 +1,5 @@
 package se.matzlarsson.cragglez.model;
 
-import java.util.Arrays;
-
 public class Model {
 
     private static Model instance = null;

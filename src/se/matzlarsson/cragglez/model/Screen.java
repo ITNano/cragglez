@@ -19,7 +19,7 @@ public class Screen {
     @Override
     public String toString(){
         Rectangle b = getBounds();
-        return "Display "+(screenIndex+1)+" :: Start ("+b.getX()+", "+b.getY()+") :: Size ("+b.getWidth()+", "+b.getHeight()+")";
+        return "Display "+(screenIndex+1)+" :: ("+((int)b.getX())+", "+((int)b.getY())+")   "+((int)b.getWidth())+"x"+((int)b.getHeight());
     }
 
 
