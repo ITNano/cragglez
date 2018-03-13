@@ -1,8 +1,56 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="se.matzlarsson.cragglez.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox id="vbox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.matzlarsson.cragglez.Controller">
+    <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+        <menus>
+            <Menu text="File">
+                <items>
+                    <MenuItem text="New" />
+                    <MenuItem text="Open" />
+                    <MenuItem text="Save" />
+                    <MenuItem text="Save As" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="Exit" />
+                </items>
+            </Menu>
+            <Menu text="Edit">
+                <items>
+                    <MenuItem text="Copy" />
+                    <MenuItem text="Cut" />
+                    <MenuItem text="Paste" />
+                </items>
+            </Menu>
+            <Menu text="Tools">
+                <items>
+                    <MenuItem text="Reload screens" onAction="#reloadScreens"/>
+                </items>
+            </Menu>
+            <Menu text="Help">
+                <items>
+                    <MenuItem disable="true" text="Search" />
+                    <MenuItem text="Online Manual" visible="false" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <AnchorPane fx:id="contentBox" prefHeight="1366" prefWidth="768">
+      <children>
+         <Label fx:id = "debugLabel" alignment="CENTER" contentDisplay="CENTER" text="Screen Data Here" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+      </children></AnchorPane>
+</VBox>
