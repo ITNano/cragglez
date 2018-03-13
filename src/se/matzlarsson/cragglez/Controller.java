@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import se.matzlarsson.cragglez.model.Model;
 
@@ -21,10 +22,17 @@ public class Controller implements Initializable{
 
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private AnchorPane contentBox;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle){
         menuBar.setFocusTraversable(true);
+        try {
+            contentBox.getChildren().add(new FXMLLoader(getClass().getResource("panels/layers.fxml")).load());
+        }catch(IOException ioe){
+            System.out.println("Could not load external panels");
+        }
     }
 
     @FXML

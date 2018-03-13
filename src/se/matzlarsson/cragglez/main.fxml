@@ -17,7 +17,7 @@
                     <MenuItem text="Save" />
                     <MenuItem text="Save As" />
                     <SeparatorMenuItem />
-                    <MenuItem text="Exit" onAction="#closeProgram"/>
+                    <MenuItem onAction="#closeProgram" text="Exit" />
                 </items>
             </Menu>
             <Menu text="Edit">
@@ -29,12 +29,12 @@
             </Menu>
             <Menu text="Tools">
                 <items>
-                    <MenuItem text="Reload screens" onAction="#reloadScreens"/>
+                    <MenuItem onAction="#reloadScreens" text="Reload screens" />
                 </items>
             </Menu>
             <Menu text="Debug">
                 <items>
-                    <MenuItem text="Show screens" onAction="#showScreens" />
+                    <MenuItem onAction="#showScreens" text="Show screens" />
                 </items>
             </Menu>
             <Menu text="Help">

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="40.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <Label fx:id="layerLevel" prefWidth="20.0" text="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+           <font>
+               <Font size="18.0" />
+           </font>
+       </Label>
+      <Label fx:id="layerName" prefWidth="110.0" text="LayerName" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+
+       <Label fx:id="layerPositionX" alignment="CENTER" prefWidth="40.0" text="1920" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="18">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label alignment="CENTER" prefWidth="40.0" style="-fx-background-color: #bbbbbb; -fx-border-width: 0 1 0 0; -fx-border-color: #eeeeee;" text="X" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+
+       <Label fx:id="layerPositionY" alignment="CENTER" prefWidth="40.0" text="1080" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="18">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label alignment="CENTER" prefWidth="40.0" style="-fx-background-color: #bbbbbb; -fx-border-width: 0 1 0 0; -fx-border-color: #eeeeee;" text="Y" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+
+       <Label fx:id="layerWidth" alignment="CENTER" prefWidth="40.0" text="1920" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="18">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label alignment="CENTER" prefWidth="40.0" style="-fx-background-color: #bbbbbb; -fx-border-width: 0 1 0 0; -fx-border-color: #eeeeee;" text="W" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+
+       <Label fx:id="layerHeight" alignment="CENTER" prefWidth="40.0" text="1080" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="18">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label alignment="CENTER" prefWidth="40.0" style="-fx-background-color: #bbbbbb;" text="H" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+   </children>
+</AnchorPane>
