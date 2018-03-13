@@ -1,4 +1,4 @@
-package sample;
+package se.matzlarsson.cragglez;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
