@@ -19,7 +19,7 @@
                     <MenuItem text="Save" />
                     <MenuItem text="Save As" />
                     <SeparatorMenuItem />
-                    <MenuItem text="Exit" />
+                    <MenuItem text="Exit" onAction="#closeProgram"/>
                 </items>
             </Menu>
             <Menu text="Edit">
@@ -47,7 +47,7 @@
 
     <AnchorPane fx:id="contentBox" prefHeight="1366" prefWidth="768">
       <children>
-         <Label fx:id = "debugLabel" alignment="CENTER" contentDisplay="CENTER" text="Screen Data Here" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+         <Label fx:id = "debugLabel" alignment="CENTER" textAlignment="CENTER" contentDisplay="CENTER" text="Screen Data Here" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <font>
                <Font size="24.0" />
             </font>

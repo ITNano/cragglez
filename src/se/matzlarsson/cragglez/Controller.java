@@ -1,5 +1,6 @@
 package se.matzlarsson.cragglez;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -50,9 +51,15 @@ public class Controller implements Initializable{
         flushDataToScreen();
     }
 
+    @FXML
+    private void closeProgram(){
+        Platform.exit();
+        System.exit(0);
+    }
+
     private void flushDataToScreen(){
         String data = String.join("\n", Arrays.stream(m.getScreenData()).map(s -> s.toString()).toArray(sz -> new String[sz]));
-        debugLabel.setText(data);
+        debugLabel.setText("Displays:\n" + data);
     }
 
 }
