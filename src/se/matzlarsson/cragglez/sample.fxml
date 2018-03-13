@@ -34,6 +34,11 @@
                     <MenuItem text="Reload screens" onAction="#reloadScreens"/>
                 </items>
             </Menu>
+            <Menu text="Debug">
+                <items>
+                    <MenuItem text="Show screens" onAction="#showScreens" />
+                </items>
+            </Menu>
             <Menu text="Help">
                 <items>
                     <MenuItem disable="true" text="Search" />
@@ -46,11 +51,6 @@
     </MenuBar>
 
     <AnchorPane fx:id="contentBox" prefHeight="1366" prefWidth="768">
-      <children>
-         <Label fx:id = "debugLabel" alignment="CENTER" textAlignment="CENTER" contentDisplay="CENTER" text="Screen Data Here" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-      </children></AnchorPane>
+
+    </AnchorPane>
 </VBox>
