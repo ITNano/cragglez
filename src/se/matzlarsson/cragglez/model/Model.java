@@ -14,8 +14,8 @@ public class Model {
     private Model(){
         reloadScreens();
         layers = new SimpleListProperty<>(FXCollections.observableArrayList());
-        layers.add(new Layer("Music", 0, -100, -100, 10, 10));
-        layers.add(new Layer("Main video", 5, 1200, 100, 200, 200));
+        layers.add(new Layer("Music", 0, -100, -100, 10, 10, false));
+        layers.add(new Layer("Main video", 5, 25, 25, 50, 50, true));
     }
 
     public static Model getInstance(){
@@ -33,8 +33,8 @@ public class Model {
         return screens;
     }
 
-    public void createLayer(String name, int level, int x, int y, int width, int height){
-        layers.add(new Layer(name, level, x, y, width, height));
+    public void createLayer(String name, int level, int x, int y, int width, int height, boolean usePercentage){
+        layers.add(new Layer(name, level, x, y, width, height, usePercentage));
     }
 
     public boolean removeLayer(Layer layer){

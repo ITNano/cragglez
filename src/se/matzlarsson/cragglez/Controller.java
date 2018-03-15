@@ -4,13 +4,12 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import se.matzlarsson.cragglez.model.Model;
+import se.matzlarsson.cragglez.util.FXUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +31,7 @@ public class Controller implements Initializable{
             contentBox.getChildren().add(new FXMLLoader(getClass().getResource("panels/layers.fxml")).load());
         }catch(IOException ioe){
             System.out.println("Could not load external panels");
+            ioe.printStackTrace();
         }
     }
 
@@ -67,16 +67,7 @@ public class Controller implements Initializable{
 
 
     private void showDebugWindow(String titleName, String resource){
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("debug/"+resource));
-            Stage stage = new Stage();
-            stage.setTitle("Debug - " + titleName);
-            stage.setScene(new Scene(loader.load(), 600, 400));
-            stage.show();
-        }catch(IOException ioe){
-            System.out.println("Couldn't show window!");
-        }
+        FXUtil.openWindow(getClass().getResource("debug/"+resource), "Debug - "+titleName, 600, 400);
     }
 
 }
