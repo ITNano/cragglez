@@ -50,6 +50,7 @@ public class LayersController implements Initializable{
                     if(empty){
                         setGraphic(null);
                         setContextMenu(null);
+                        setPrefHeight(40.0);
                     }else {
                         if(getContextMenu() == null){
                             setContextMenu(getItemContextMenu());
