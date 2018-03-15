@@ -132,6 +132,8 @@ public class LayersController implements Initializable{
         @FXML
         private Spinner<Integer> layerLevel;
         @FXML
+        private ComboBox<String> layerScreen;
+        @FXML
         private TabPane posSizePane;
         @FXML
         private TextField layerX;
@@ -162,9 +164,11 @@ public class LayersController implements Initializable{
             FXUtil.makeTextfieldNumeric(layerY);
             FXUtil.makeTextfieldNumeric(layerWidth);
             FXUtil.makeTextfieldNumeric(layerHeight);
+            layerScreen.getItems().addAll("Primary screen", "Secondary screen", "Tertiary screen");
 
             if(layer != null) {
                 layerName.setText(layer.nameProperty().get());
+                layerScreen.getSelectionModel().select(layer.screenProperty().get());
                 layerLevel.getEditor().setText(layer.levelProperty().get() + "");
                 if(layer.isPercentagesProperty().get()) {
                     layerPercentageX.setText(layer.xProperty().get() + "");
@@ -181,6 +185,7 @@ public class LayersController implements Initializable{
                 }
             }else{
                 layerLevel.getEditor().setText("1");
+                layerScreen.getSelectionModel().select(0);
             }
 
             doneButton.disableProperty().bind(isValidForm().not());
@@ -198,16 +203,18 @@ public class LayersController implements Initializable{
         private void saveChanges(){
             boolean percentage = posSizePane.getSelectionModel().getSelectedIndex() == 0;
             String name = layerName.getText();
+            int screen = layerScreen.getSelectionModel().getSelectedIndex();
             int level = Util.getInt(layerLevel.getEditor().getText());
             int x = Util.getInt(percentage?layerPercentageX.getText():layerX.getText());
             int y = Util.getInt(percentage?layerPercentageY.getText():layerY.getText());
             int w = Util.getInt(percentage?layerPercentageWidth.getText():layerWidth.getText());
             int h = Util.getInt(percentage?layerPercentageHeight.getText():layerHeight.getText());
             if(this.layer == null){
-                Model.getInstance().createLayer(name, level, x, y, w, h, percentage);
+                Model.getInstance().createLayer(name, screen, level, x, y, w, h, percentage);
             }else{
                 this.layer.isPercentagesProperty().set(percentage);
                 this.layer.nameProperty().set(name);
+                this.layer.screenProperty().set(screen);
                 this.layer.levelProperty().set(level);
                 this.layer.xProperty().set(x);
                 this.layer.yProperty().set(y);

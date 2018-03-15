@@ -8,13 +8,15 @@ public class Layer {
     private StringProperty name;
     private IntegerProperty x, y, width, height;
     private BooleanProperty percentages;
+    private IntegerProperty screen;
 
-    public Layer(int level, int x, int y, int width, int height, boolean percentage) {
-        this("Layer " + level, level, x, y, width, height, percentage);
+    public Layer(int screen, int level, int x, int y, int width, int height, boolean percentage) {
+        this("Layer " + level, screen, level, x, y, width, height, percentage);
     }
 
-    public Layer(String name, int level, int x, int y, int width, int height, boolean percentage){
+    public Layer(String name, int screen, int level, int x, int y, int width, int height, boolean percentage){
         this.name = new SimpleStringProperty(name);
+        this.screen = new SimpleIntegerProperty(screen);
         this.level = new SimpleIntegerProperty(level);
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
@@ -29,6 +31,10 @@ public class Layer {
 
     public StringProperty nameProperty(){
         return name;
+    }
+
+    public IntegerProperty screenProperty() {
+        return screen;
     }
 
     public IntegerProperty xProperty() {
