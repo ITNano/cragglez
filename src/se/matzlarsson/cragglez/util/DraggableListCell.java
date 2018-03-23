@@ -8,6 +8,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.Serializable;
 
+/**
+ *  Credits to jewelsea for providing the basic example this class has been derived from.
+ *  https://gist.github.com/jewelsea/7821196
+ */
+
 public class DraggableListCell<T extends Serializable> extends ListCell<T> {
 
     private static final DataFormat df = new DataFormat("any object");
