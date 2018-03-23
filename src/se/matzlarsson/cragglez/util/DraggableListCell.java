@@ -2,14 +2,13 @@ package se.matzlarsson.cragglez.util;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 
-public class DraggableListCell extends ListCell<String> {
-    private final ImageView imageView = new ImageView();
+import java.io.Serializable;
+
+public class DraggableListCell<T extends Serializable> extends ListCell<T> {
+
+    private static final DataFormat df = new DataFormat("any object");
 
     public DraggableListCell() {
         ListCell thisCell = this;
@@ -21,15 +20,17 @@ public class DraggableListCell extends ListCell<String> {
 
             Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
-            content.putString(getItem());
+            content.put(df, getItem());
             dragboard.setDragView(snapshot(null, null));
             dragboard.setContent(content);
+
+            System.out.println(dragboard.getContent(df));
 
             event.consume();
         });
 
         setOnDragOver(event -> {
-            if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+            if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
                 event.acceptTransferModes(TransferMode.MOVE);
             }
 
@@ -37,13 +38,13 @@ public class DraggableListCell extends ListCell<String> {
         });
 
         setOnDragEntered(event -> {
-            if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+            if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
                 setOpacity(0.3);
             }
         });
 
         setOnDragExited(event -> {
-            if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+            if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
                 setOpacity(1);
             }
         });
@@ -56,9 +57,9 @@ public class DraggableListCell extends ListCell<String> {
             Dragboard db = event.getDragboard();
             boolean success = false;
 
-            if (db.hasString()) {
-                ObservableList<String> items = getListView().getItems();
-                int startPos = items.indexOf(db.getString());
+            if (db.hasContent(df)) {
+                ObservableList<T> items = getListView().getItems();
+                int startPos = items.indexOf(db.getContent(df));
                 int targetPos = items.indexOf(getItem());
 
                 // Will put below if dropped on lower half
@@ -66,10 +67,8 @@ public class DraggableListCell extends ListCell<String> {
                     targetPos += 1;
                 }
 
-                System.out.println("Switching "+startPos+" to "+targetPos);
-
                 // Find available items
-                ObservableList<String> cells = getListView().getItems();
+                ObservableList<T> cells = getListView().getItems();
                 // Add on new position
                 cells.add(targetPos, cells.get(startPos));
                 // Remove from old position
