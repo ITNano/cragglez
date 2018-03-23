@@ -24,8 +24,6 @@ public class DraggableListCell<T extends Serializable> extends ListCell<T> {
             dragboard.setDragView(snapshot(null, null));
             dragboard.setContent(content);
 
-            System.out.println(dragboard.getContent(df));
-
             event.consume();
         });
 
