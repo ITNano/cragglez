@@ -3,15 +3,23 @@ package se.matzlarsson.cragglez.util;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.input.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.io.Serializable;
 
 public class DraggableListCell<T extends Serializable> extends ListCell<T> {
 
     private static final DataFormat df = new DataFormat("any object");
+    private static final Rectangle overlayTopRect = new Rectangle(300, 20, Color.color(0.9, 0.9, 0.9, 0.6));
+    private static final Rectangle overlayBotRect = new Rectangle(0, 20, 300, 20);
+    private Area prevArea = Area.NONE;
+
+    { overlayBotRect.setFill(Color.color(0.9, 0.9, 0.9, 0.6)); }
 
     public DraggableListCell() {
         ListCell thisCell = this;
+        updateSelectionMarkup(null);
 
         setOnDragDetected(event -> {
             if (getItem() == null) {
@@ -31,27 +39,25 @@ public class DraggableListCell<T extends Serializable> extends ListCell<T> {
             if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
                 event.acceptTransferModes(TransferMode.MOVE);
             }
-
+            updateSelectionMarkup(event);
             event.consume();
         });
 
         setOnDragEntered(event -> {
-            if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
-                setOpacity(0.3);
-            }
+            updateSelectionMarkup(event);
         });
 
         setOnDragExited(event -> {
-            if (event.getGestureSource() != thisCell && event.getDragboard().hasContent(df)) {
-                setOpacity(1);
-            }
+            updateSelectionMarkup(null);
         });
 
         setOnDragDropped(event -> {
+            System.out.println("Getting stuff dropped");
             if (getItem() == null) {
                 return;
             }
 
+            updateSelectionMarkup(null);
             Dragboard db = event.getDragboard();
             boolean success = false;
 
@@ -87,4 +93,23 @@ public class DraggableListCell<T extends Serializable> extends ListCell<T> {
 
         setOnDragDone(DragEvent::consume);
     }
+
+    private void updateSelectionMarkup(DragEvent event){
+        boolean invalid = event == null || event.getGestureSource() == this || isEmpty() || !event.getDragboard().hasContent(df) || event.getY() > getHeight();
+        Area newArea = (invalid ? Area.NONE : (event.getY() > getHeight()/2 ? Area.BOTTOM : Area.TOP));
+        if(newArea != prevArea){
+            if(prevArea != Area.NONE){
+                getChildren().remove(prevArea == Area.TOP ? overlayTopRect : overlayBotRect);
+            }
+            if(newArea != Area.NONE){
+                getChildren().add(newArea == Area.TOP ? overlayTopRect : overlayBotRect);
+            }
+            prevArea = newArea;
+        }
+    }
+
+    private enum Area{
+        NONE, TOP, BOTTOM
+    }
+
 }

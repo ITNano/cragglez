@@ -1,9 +1,13 @@
 package se.matzlarsson.cragglez.util;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -73,6 +77,11 @@ public class FXUtil {
                 }
             }
         });
+    }
+
+
+    public static BackgroundImage getBackgroundImage(String url, int width, int height){
+        return new BackgroundImage(new Image(url, width, height, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     }
 
 }
