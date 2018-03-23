@@ -4,7 +4,6 @@ import javafx.beans.Observable;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -109,7 +108,7 @@ public class LayersController implements Initializable{
         public void setLayer(Layer layer){
             this.layer = layer;
             if(this.layer != null){
-                layerLevel.textProperty().bindBidirectional(this.layer.levelProperty(), PropertyUtil.stringToNumConverter());
+                layerLevel.textProperty().bind(PropertyUtil.multipleBound(new Observable[]{this.layer.levelProperty()}, () -> this.layer.getLevel()+""));
                 layerName.textProperty().bind(this.layer.nameProperty());
                 layerPositionX.textProperty().bind(getPercentageBinding(layer.xProperty()));
                 layerPositionY.textProperty().bind(getPercentageBinding(layer.yProperty()));
